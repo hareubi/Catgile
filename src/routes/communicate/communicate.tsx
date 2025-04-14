@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { useState } from "react";
 import styled from "styled-components";
-import { db } from "../../components/firebase";
+import { CurTeamId, db } from "../../components/firebase";
 
 const Wrapper = styled.div`
   display: flex;
@@ -101,7 +101,7 @@ export default function Communicate() {
   >([]);
   async function a() {
     const docs = await getDocs(
-      query(collection(db, "communities"), orderBy("id"), limit(25))
+      query(collection(db, CurTeamId + "communities"), orderBy("id"), limit(25))
     );
     setCommunities(
       docs.docs.map((snapshot) => {
@@ -120,7 +120,7 @@ export default function Communicate() {
   }
 
   async function onCommunityAdd() {
-    const doc = await addDoc(collection(db, "communities"), {
+    const doc = await addDoc(collection(db, CurTeamId + "communities"), {
       id: communities.length,
       name: newCommunityName,
       description: newCommunityDescription,

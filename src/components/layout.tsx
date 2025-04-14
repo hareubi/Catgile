@@ -1,7 +1,8 @@
 import { Outlet, useNavigate } from "react-router";
-import { auth } from "./firebase";
+import { auth, CurTeamId } from "./firebase";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Wrapper = styled.ul`
   display: grid;
@@ -37,6 +38,7 @@ const MenuItem = styled.ul`
   }
 `;
 export default function Layout() {
+  const [teamId, setTeamId] = useState<string>(CurTeamId);
   const navigate = useNavigate();
   async function logOut(): Promise<void> {
     if (confirm("Logout?")) {
@@ -45,12 +47,13 @@ export default function Layout() {
       navigate("/join");
     }
   }
+  setTimeout(() => setTeamId(CurTeamId), 1000);
   return (
     <>
       <Wrapper>
         <SizedBox />
         <Menu>
-          <Link to="projects">ProjectA</Link>
+          <Link to="projects">{teamId}</Link>
           <Link to="">
             <MenuItem>
               <svg

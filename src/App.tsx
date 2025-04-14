@@ -15,6 +15,7 @@ import Communicate from "./routes/communicate/communicate";
 import Board from "./routes/board/board";
 import Planning from "./routes/planning/planning";
 import ProjectSelector from "./routes/projects/projects";
+import ProtectedRouteProject from "./components/protected-route-project";
 
 const GlobalStyle = createGlobalStyle`
 ${reset};
@@ -78,10 +79,6 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "projects",
-        element: <ProjectSelector />,
-      },
-      {
         path: "",
         element: <Home />,
       },
@@ -110,6 +107,14 @@ const router = createBrowserRouter([
   {
     path: "/join",
     element: <CreateAccount />,
+  },
+  {
+    path: "projects",
+    element: (
+      <ProtectedRouteProject>
+        <ProjectSelector />
+      </ProtectedRouteProject>
+    ),
   },
 ]);
 

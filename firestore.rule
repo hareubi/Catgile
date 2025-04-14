@@ -1,0 +1,29 @@
+rules_version = '2';
+function HasAccessToTeam(teamId) {
+  return true;
+}
+service cloud.firestore {
+  match /databases/{database}/documents/profile/{document=**} {
+      allow update, delete: if resource.id == request.auth.uid;
+      allow read, create: if request.auth != null;
+    }
+  match /databases/{database}/documents/{TeamId}/wtf {
+    match /issues/{document=**} {
+    allow read: if request.auth != null && HasAccessToTeam(TeamId);
+    allow update, delete: if request.auth.uid == resource.data.uid && HasAccessToTeam(TeamId);
+      allow create: if request.auth != null && HasAccessToTeam(TeamId);
+    }
+    match /communities/{document=**} {
+     allow read, create, delete: if request.auth != null && HasAccessToTeam(TeamId);
+    }
+    match /board/{document=**} {
+     allow read, create, delete: if request.auth != null && HasAccessToTeam(TeamId);
+    }
+    match /story/{document=**} {
+     allow read, create, delete, update: if request.auth != null && HasAccessToTeam(TeamId);
+    }
+    match /planning/{document=**} {
+     allow read, create, delete, update: if request.auth != null && HasAccessToTeam(TeamId);
+    }
+  }
+}

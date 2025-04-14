@@ -7,7 +7,7 @@ import {
   Unsubscribe,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../../components/firebase";
+import { CurTeamId, db } from "../../components/firebase";
 import { useEffect, useState } from "react";
 
 export default function Story(name: { name: string }) {
@@ -21,7 +21,9 @@ export default function Story(name: { name: string }) {
 
   let unSubscribe: Unsubscribe | null = null;
   const fetchIssues = async () => {
-    const storyQuery = query(collection(db, `story/data/${name.name}`));
+    const storyQuery = query(
+      collection(db, CurTeamId + `story/data/${name.name}`)
+    );
     unSubscribe = await onSnapshot(storyQuery, (snapshot) => {
       const newStoryList = snapshot.docs.map((doc) => {
         const { name, description } = doc.data();
@@ -45,7 +47,7 @@ export default function Story(name: { name: string }) {
     event: React.ChangeEvent<HTMLInputElement>,
     id: string
   ) {
-    updateDoc(doc(db, `story/data/${name.name}`, id), {
+    updateDoc(doc(db, CurTeamId + `story/data/${name.name}`, id), {
       name: event.target.value,
     });
   }
@@ -53,7 +55,7 @@ export default function Story(name: { name: string }) {
     event: React.ChangeEvent<HTMLInputElement>,
     id: string
   ) {
-    updateDoc(doc(db, `story/data/${name.name}`, id), {
+    updateDoc(doc(db, CurTeamId + `story/data/${name.name}`, id), {
       description: event.target.value,
     });
   }
@@ -76,7 +78,9 @@ export default function Story(name: { name: string }) {
             />
             <button
               onClick={() =>
-                deleteDoc(doc(db, `story/data/${name.name}`, story.id))
+                deleteDoc(
+                  doc(db, CurTeamId + `story/data/${name.name}`, story.id)
+                )
               }
             >
               delete

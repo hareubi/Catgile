@@ -10,7 +10,7 @@ import {
   query,
   Unsubscribe,
 } from "firebase/firestore";
-import { db } from "../../components/firebase";
+import { CurTeamId, db } from "../../components/firebase";
 import Story from "./story";
 
 const BoardColumn = styled.div`
@@ -50,7 +50,7 @@ export default function Card() {
 
   let unSubscribe: Unsubscribe | null = null;
   const fetchIssues = async () => {
-    const boardQuery = query(collection(db, "board"), limit(25));
+    const boardQuery = query(collection(db, CurTeamId + "board"), limit(25));
     unSubscribe = await onSnapshot(boardQuery, (snapshot) => {
       const newCardList = snapshot.docs.map((doc) => {
         const { name } = doc.data();
@@ -70,7 +70,7 @@ export default function Card() {
     };
   });
   function onStotyAdd(name: string) {
-    addDoc(collection(db, `story/data/${name}`), {
+    addDoc(collection(db, CurTeamId + `story/data/${name}`), {
       name: "story",
       description: "storyDescription",
     });
@@ -98,7 +98,9 @@ export default function Card() {
                 />
               </svg>
             </StoryAddButton>
-            <button onClick={() => deleteDoc(doc(db, "board", card.id))}>
+            <button
+              onClick={() => deleteDoc(doc(db, CurTeamId + "board", card.id))}
+            >
               delete
             </button>
           </BoardRow>

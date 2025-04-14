@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Draw from "../../components/draw.tsx";
 import { useState } from "react";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
-import { auth, db } from "../../components/firebase.ts";
+import { auth, CurTeamId, db } from "../../components/firebase.ts";
 
 const Form = styled.form`
   display: flex;
@@ -51,7 +51,7 @@ export default function PostIssue() {
     )
       return;
     setUploading(true);
-    const doc = await addDoc(collection(db, "issues"), {
+    const doc = await addDoc(collection(db, CurTeamId + "issues"), {
       name: issueName,
       text: issueText,
       creationTime: Date.now(),

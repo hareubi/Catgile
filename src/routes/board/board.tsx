@@ -2,7 +2,7 @@ import { useState } from "react";
 import { styled } from "styled-components";
 import Card from "./card";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../components/firebase";
+import { CurTeamId, db } from "../../components/firebase";
 
 const BoardWrapper = styled.div`
   display: flex;
@@ -23,12 +23,11 @@ const CardAddButton = styled.button`
   width: 50px;
   padding: 0;
 `;
-
 export default function Board() {
   const [cardName, setCardName] = useState("");
   function onStoryAdd() {
     if (cardName.trim() == "") return;
-    addDoc(collection(db, "board"), { name: cardName });
+    addDoc(collection(db, CurTeamId + "board"), { name: cardName });
     setCardName("");
   }
   return (
@@ -38,17 +37,11 @@ export default function Board() {
           <svg
             data-slot="icon"
             fill="none"
-            stroke-width="1.5"
-            stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12 4.5v15m7.5-7.5h-15"
-            ></path>
+            <path d="M12 4.5v15m7.5-7.5h-15"></path>
           </svg>
         </CardAddButton>
         <ul>

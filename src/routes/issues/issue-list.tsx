@@ -8,7 +8,7 @@ import {
   query,
 } from "firebase/firestore";
 import { styled } from "styled-components";
-import { auth, db } from "../../components/firebase";
+import { auth, CurTeamId, db } from "../../components/firebase";
 import { useEffect, useState } from "react";
 import { Unsubscribe } from "firebase/auth";
 
@@ -32,7 +32,7 @@ export default function IssueList() {
   const [issues, setIssues] = useState<Issue[]>([]);
   const fetchIssues = async () => {
     const issueQuery = query(
-      collection(db, "issues"),
+      collection(db, CurTeamId + "issues"),
       orderBy("creationTime", "desc"),
       limit(25)
     );
@@ -108,7 +108,7 @@ export function Issue({
       {auth.currentUser?.uid === uid.toString() ? (
         <button
           onClick={() => {
-            deleteDoc(doc(db, "issues", id));
+            deleteDoc(doc(db, CurTeamId + "issues", id));
           }}
         >
           Delete

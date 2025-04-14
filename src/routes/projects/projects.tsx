@@ -1,4 +1,7 @@
 import { styled } from "styled-components";
+import { useNavigate } from "react-router";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../components/firebase";
 const NewProjectButton = styled.button`
   padding: 0;
   width: 50px;
@@ -11,9 +14,18 @@ const ProjectsGrid = styled.ul`
   gap: 10px;
 `;
 export default function ProjectSelector() {
+  const navigate = useNavigate();
+  function NewProject() {
+    if (auth.currentUser === null) return;
+    localStorage.setItem("TeamId", "NewProject");
+    setDoc(doc(db, "profile", auth.currentUser.uid), {
+      TeamId: "NewProject",
+    });
+    navigate("/board");
+  }
   return (
     <div>
-      <NewProjectButton>
+      <NewProjectButton onClick={NewProject}>
         <svg
           fill="none"
           strokeWidth={1.5}
@@ -38,10 +50,9 @@ export default function ProjectSelector() {
     </div>
   );
 }
-
 const ProjectBackground = styled.button`
   background-color: white;
-  width: 400px;
+  width: 500px;
   height: 300px;
   border: 4px outset #268bd2;
   border-radius: 10px;
@@ -57,22 +68,19 @@ const ProjectBackground = styled.button`
 const ProjectColumn = styled.ul`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 const ProjectThumbnail = styled.img`
-  width: 200px;
+  margin: 10px;
+  min-width: 200px;
   height: 200px;
-  align-self: flex-end;
-  border-radius: 10px;
 `;
 function Project() {
   return (
     <ProjectBackground>
       <ProjectColumn>
-        <h1>ProjectA</h1>
-        <h1>ProjectA</h1>
-        <h1>ProjectA</h1>
-        <h1>ProjectA</h1>
-        <h1>ProjectA</h1>
+        <p>ProjectName</p>
+        <p>ProjectDescription aaaaaa aaaaaaaaaa</p>
       </ProjectColumn>
       <ProjectThumbnail src="" />
     </ProjectBackground>
