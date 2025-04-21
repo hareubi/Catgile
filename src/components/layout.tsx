@@ -49,7 +49,10 @@ export default function Layout() {
       navigate("/join");
     }
   }
-  setTimeout(() => setTeamId(CurTeamId), 1000);
+  setTimeout(
+    () => setTeamId(CurTeamId != "/wtf/" ? CurTeamId : "Projects"),
+    1000
+  );
   return (
     <>
       <Wrapper>
