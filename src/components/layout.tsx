@@ -50,7 +50,7 @@ export default function Layout() {
     }
   }
   setTimeout(
-    () => setTeamId(CurTeamId != "/wtf/" ? CurTeamId : "Projects"),
+    () => setTeamId(CurTeamId != "/projects/" ? CurTeamId : "Projects"),
     1000
   );
   return (
@@ -58,7 +58,7 @@ export default function Layout() {
       <Wrapper>
         <SizedBox />
         <Menu>
-          <Link to="projects">{teamId.replace("/wtf/", "")}</Link>
+          <Link to="projects">{teamId.replace("/projects/", "")}</Link>
           <Link to="">
             <MenuItem>
               <svg

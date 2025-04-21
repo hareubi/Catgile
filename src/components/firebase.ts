@@ -26,5 +26,5 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export let CurTeamId: string;
 setInterval(() => {
-  CurTeamId = (localStorage.getItem("TeamId") ?? "") + "/wtf/";
+  CurTeamId = "/projects/" + (localStorage.getItem("TeamId") ?? "");
 }, 100);

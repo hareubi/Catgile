@@ -9,7 +9,7 @@ export default function ProtectedRoute({
 }) {
   const user = auth.currentUser;
   if (user == null) return <Navigate to="join" />;
-  if (CurTeamId == "/wtf/") return <Navigate to="projects" />;
+  if (CurTeamId == "/projects/") return <Navigate to="projects" />;
   getDoc(doc(db, "profile", user.uid)).then((snapshot) => {
     if (!snapshot.exists() || snapshot.data() === undefined) {
       localStorage.setItem("TeamId", "");
