@@ -23,6 +23,8 @@ const Menu = styled.div`
   margin-left: 15px;
   margin-top: 5px;
   position: fixed;
+  overflow-x: visible;
+  width: 90px;
 `;
 const MenuItem = styled.ul`
   cursor: pointer;
@@ -38,7 +40,7 @@ const MenuItem = styled.ul`
   }
 `;
 export default function Layout() {
-  const [teamId, setTeamId] = useState<string>(CurTeamId);
+  const [teamId, setTeamId] = useState<string>("Loading");
   const navigate = useNavigate();
   async function logOut(): Promise<void> {
     if (confirm("Logout?")) {
@@ -53,7 +55,7 @@ export default function Layout() {
       <Wrapper>
         <SizedBox />
         <Menu>
-          <Link to="projects">{teamId}</Link>
+          <Link to="projects">{teamId.replace("/wtf/", "")}</Link>
           <Link to="">
             <MenuItem>
               <svg
