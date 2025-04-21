@@ -58,7 +58,7 @@ ${reset};
   width: 100%;
   font-size: 16px;
   }
-  div, nav{
+  div, nav, article, section{
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
       background-color:#fdf6e3;
       border-radius:10px;
