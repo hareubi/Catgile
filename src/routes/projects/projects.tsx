@@ -24,7 +24,7 @@ export default function ProjectSelector() {
     navigate("/board");
   }
   return (
-    <div>
+    <article>
       <NewProjectButton onClick={NewProject}>
         <svg
           fill="none"
@@ -47,7 +47,7 @@ export default function ProjectSelector() {
         <Project />
         <Project />
       </ProjectsGrid>
-    </div>
+    </article>
   );
 }
 const ProjectBackground = styled.button`

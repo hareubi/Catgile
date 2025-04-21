@@ -68,7 +68,7 @@ export default function IssueList() {
   );
 }
 
-const Column = styled.div`
+const Column = styled.article`
   background-color: white;
 `;
 const Username = styled.h1`

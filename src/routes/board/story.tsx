@@ -63,7 +63,7 @@ export default function Story(name: { name: string }) {
     <>
       {storyList.map((story) => {
         return (
-          <div key={story.id}>
+          <section key={story.id}>
             <input
               value={story.name}
               onChange={(event) => {
@@ -85,7 +85,7 @@ export default function Story(name: { name: string }) {
             >
               delete
             </button>
-          </div>
+          </section>
         );
       })}
     </>

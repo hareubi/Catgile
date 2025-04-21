@@ -15,7 +15,7 @@ const Wrapper = styled.ul`
 const SizedBox = styled.a`
   width: 90px;
 `;
-const Menu = styled.div`
+const Menu = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -12,7 +12,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { CurTeamId, db } from "../../components/firebase";
 
-const Wrapper = styled.div`
+const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,7 +37,7 @@ const SubmitButton = styled.button`
   padding: 0px;
   align-self: start;
 `;
-const CommunityCard = styled.div`
+const CommunityCard = styled.article`
   background-color: white;
   border-radius: 8px;
   padding: 20px;

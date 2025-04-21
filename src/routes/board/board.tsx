@@ -4,13 +4,13 @@ import Card from "./card";
 import { addDoc, collection } from "firebase/firestore";
 import { CurTeamId, db } from "../../components/firebase";
 
-const BoardWrapper = styled.div`
+const BoardWrapper = styled.article`
   display: flex;
   flex-direction: row;
   min-height: 90vh;
   padding-top: 90px;
 `;
-const TopRow = styled.div`
+const TopRow = styled.section`
   display: flex;
   flex-direction: row;
   background-color: white;

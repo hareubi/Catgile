@@ -9,7 +9,7 @@ const CollapseToggleButton = styled.button`
   padding: 0;
   margin-bottom: 10px;
 `;
-const IssuesFormWrapper = styled.div`
+const IssuesFormWrapper = styled.section`
   background-color: white;
 `;
 export default function Issues() {

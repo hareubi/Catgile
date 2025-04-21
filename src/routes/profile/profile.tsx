@@ -12,7 +12,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-const ProfileWrapper = styled.div`
+const ProfileWrapper = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;

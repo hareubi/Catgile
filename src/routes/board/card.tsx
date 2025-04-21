@@ -13,7 +13,7 @@ import {
 import { CurTeamId, db } from "../../components/firebase";
 import Story from "./story";
 
-const BoardColumn = styled.div`
+const BoardColumn = styled.section`
   display: flex;
   flex-direction: column;
   margin: 5px;
