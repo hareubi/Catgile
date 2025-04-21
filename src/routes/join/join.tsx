@@ -123,7 +123,7 @@ export default function CreateAccount() {
   };
   return (
     <Wrapper>
-      <Title>Majority Report</Title>
+      <Title>Catgile</Title>
       <Form onSubmit={onSubmit}>
         {isSignIn ? null : (
           <Input

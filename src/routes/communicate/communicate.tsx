@@ -141,7 +141,7 @@ export default function Communicate() {
     ]);
   }
   function onDelete(id: string) {
-    deleteDoc(doc(db, "communities", id));
+    deleteDoc(doc(db, CurTeamId + "communities", id));
     setIsLoaded(false);
   }
   return (
@@ -202,7 +202,12 @@ export default function Communicate() {
             <CommunityInfo>
               <Members>{community.link}</Members>
               <form>
-                <JoinButton onClick={() => window.open(`${community.link}`)}>
+                <JoinButton
+                  onClick={(event) => {
+                    event.preventDefault();
+                    window.open(`${community.link}`);
+                  }}
+                >
                   Join
                 </JoinButton>
                 <JoinButton
